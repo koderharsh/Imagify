@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Resizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="body-container">
+      <div class="header">
+        <div class="title">Imagify</div>
+        <img src="./static/image-logo.png" alt="" class="logo" />
+        <div class="sub-title">Resize your Images</div>
+      </div>
+      <div class="left-container">
+        <div class="input-container">
+          <img id="imageSrc" alt="No Image" src="" />
+        </div>
+        <div class="caption">
+          Select your Image<input type="file" id="fileInput" name="file" />
+        </div>
+        <div class="output-container">
+          <canvas id="canvasOutput"></canvas>
+        </div>
+        <div class="input-height">
+          Enter height of image
+          <input type="text" placeholder="height" id="heightInput" /> px
+        </div>
+        <div class="input-width">
+          Enter width of image
+          <input type="text" placeholder="width" id="widthInput" /> px
+        </div>
+        <button class="button-resize" onclick="handleSubmit()">
+          Wanna Resize ?
+        </button>
+        <button class="button-download" onclick="handleDownload()">
+          <a id="download">Grab the image</a>
+        </button>
+      </div>
+      <div class="footer">
+        <div class="footer-title">Created By Harsh Tripathi</div>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
+    <script async src="./js/opencv.js" onload="onOpenCvReady();"></script>
+    <script type="text/Javascript">
+      function onOpenCvReady() {
+        console.log("OpenCV is ready");
+      }
+      function handleDownload() {
+        if(uploaded)
+        {
+        downloadBtn.setAttribute("download", "resized_image.png");
+        downloadBtn.setAttribute(
+        "href",
+        canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+        );
+        }
+      }
+    </script>
+  </body>
+</html>
